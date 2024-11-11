@@ -1,0 +1,36 @@
+import personas.*
+import construcciones.*
+import planetas.*
+
+describe "group of tests for universo" {
+
+  const juan = new Persona(edad=18)
+  const valentina = new Persona(edad=20)
+  const agustin = new Persona(edad=21)
+  const marta = new Persona(edad=30)
+
+  const muralla1 = new Muralla(longitud=20)
+  const muralla2 = new Muralla(longitud=10)
+  const museo1 = new Museo(superficieCubierta=25,indiceImportancia=2)
+
+  const planeta1 = new Planeta(personas=[juan,valentina,agustin,marta],construcciones=[muralla1,muralla2,museo1])
+
+  test "el planeta 1 es valioso" {
+    assert.that(planeta1.esValioso())
+  }
+
+  test "juan gasta 10 monedas" {
+    juan.gastarMonedas(10)
+    assert.equals(10, juan.monedas())
+  }
+
+  test "agustin gana la loteria y le dan 50 monedas" {
+    agustin.ganarMonedas(50)
+    assert.equals(70, agustin.monedas())
+  }
+
+  test "marta cumple los años" {
+    marta.cumplirAnios()
+    assert.equals(31, marta.edad())
+  }
+}
